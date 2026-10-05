@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef3f8">
+  <title>خريطة الخزائن | جامعة القصيم</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #173253;
+      --muted: #526983;
+      --page: #eef3f8;
+      --surface: #ffffff;
+      --line: #d5e0eb;
+      --blue: #1d4d7b;
+      --blue-dark: #14385f;
+      --blue-light: #e2edf7;
+      --teal: #287b78;
+      --gold: #e6bd58;
+      font-family: "Noto Sans Arabic", "Geeza Pro", Tahoma, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--page);
+      background-image: radial-gradient(#c8d7e5 0.8px, transparent 0.8px);
+      background-size: 20px 20px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 12px clamp(20px, 5vw, 72px);
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 40px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 12px 12px 12px 4px;
+      font-size: 19px;
+    }
+
+    .topbar-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    main {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: clamp(30px, 5vw, 54px) 0 42px;
+    }
+
+    .intro {
+      margin-bottom: 28px;
+      animation: arrive 420ms ease-out both;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.35;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .campus-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 8px 12px;
+      color: var(--blue-dark);
+      background: var(--blue-light);
+      border: 1px solid #cadbea;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .campus-label::before {
+      width: 8px;
+      height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .maps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .college-card {
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      box-shadow: 0 12px 32px rgb(23 50 83 / 9%);
+      animation: arrive 480ms ease-out both;
+    }
+
+    .college-card:nth-child(2) { animation-delay: 90ms; }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 82px;
+      padding: 16px 19px;
+    }
+
+    .number {
+      display: grid;
+      width: 38px;
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      place-items: center;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .college-card:nth-child(2) .number { background: var(--teal); }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .campus-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .map-frame {
+      display: block;
+      width: 100%;
+      height: 360px;
+      border: 0;
+      background: #dce7ef;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .map-caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .map-link {
+      display: inline-flex;
+      min-height: 40px;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 13px;
+      color: #fff;
+      background: var(--blue);
+      border: 1px solid var(--blue);
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 160ms ease;
+    }
+
+    .map-link:hover { background: var(--blue-dark); }
+
+    .college-card:nth-child(2) .map-link {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .college-card:nth-child(2) .map-link:hover { background: #1e625f; }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-note { display: none; }
+      .maps-grid { grid-template-columns: 1fr; }
+      .map-frame { height: 330px; }
+    }
+
+    @media (max-width: 420px) {
+      main { width: min(100% - 24px, 1240px); }
+      .card-footer { align-items: stretch; flex-direction: column; }
+      .map-link { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">خ</span>
+      <span>خزائن جامعة القصيم</span>
+    </div>
+    <span class="topbar-note">فرع الرس</span>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">جامعة القصيم · الرس</p>
+      <h1 id="page-title">خريطة الخزائن</h1>
+      <p class="lead">اختاري الكلية لعرض موقعها وفتح الاتجاهات في خرائط Google.</p>
+      <span class="campus-label">مواقع منفصلة للكليتين</span>
+    </section>
+
+    <section class="maps-grid" aria-label="مواقع كليات الرس على الخريطة">
+      <article class="college-card">
+        <header class="card-head">
+          <span class="number" aria-hidden="true">١</span>
+          <div>
+            <h2>الكلية الأدبية بالرس</h2>
+            <p class="campus-subtitle">جامعة القصيم</p>
+          </div>
+        </header>
+        <iframe
+          class="map-frame"
+          title="موقع الكلية الأدبية بالرس على خرائط Google"
+          src="https://maps.google.com/maps?q=%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B1%D8%B3%20%D8%A7%D9%84%D8%A3%D8%AF%D8%A8%D9%8A%D8%A9%20%D8%AC%D8%A7%D9%85%D8%B9%D8%A9%20%D8%A7%D9%84%D9%82%D8%B5%D9%8A%D9%85&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+        <footer class="card-footer">
+          <p class="map-caption">موقع مستقل للكلية الأدبية</p>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B1%D8%B3%20%D8%A7%D9%84%D8%A3%D8%AF%D8%A8%D9%8A%D8%A9%20%D8%AC%D8%A7%D9%85%D8%B9%D8%A9%20%D8%A7%D9%84%D9%82%D8%B5%D9%8A%D9%85" target="_blank" rel="noopener noreferrer">
+            فتح الاتجاهات <span aria-hidden="true">↗</span>
+          </a>
+        </footer>
+      </article>
+
+      <article class="college-card">
+        <header class="card-head">
+          <span class="number" aria-hidden="true">٢</span>
+          <div>
+            <h2>الكلية العلمية بالرس</h2>
+            <p class="campus-subtitle">جامعة القصيم</p>
+          </div>
+        </header>
+        <iframe
+          class="map-frame"
+          title="موقع الكلية العلمية بالرس على خرائط Google"
+          src="https://maps.google.com/maps?q=%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B1%D8%B3%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%D9%8A%D8%A9%20%D8%AC%D8%A7%D9%85%D8%B9%D8%A9%20%D8%A7%D9%84%D9%82%D8%B5%D9%8A%D9%85&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+        <footer class="card-footer">
+          <p class="map-caption">موقع مستقل للكلية العلمية</p>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B1%D8%B3%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%D9%8A%D8%A9%20%D8%AC%D8%A7%D9%85%D8%B9%D8%A9%20%D8%A7%D9%84%D9%82%D8%B5%D9%8A%D9%85" target="_blank" rel="noopener noreferrer">
+            فتح الاتجاهات <span aria-hidden="true">↗</span>
+          </a>
+        </footer>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
